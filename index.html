@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Text Field with Save</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .editable-field {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+        .save-button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .save-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editable Text Field with Save</h1>
+        <p>Click inside the box below to edit the text. Your changes will be saved automatically.</p>
+        <div class="editable-field" contenteditable="true" id="editableField"></div>
+        <button class="save-button" onclick="saveText()">Save</button>
+    </div>
+
+    <script>
+        const editableField = document.getElementById('editableField');
+
+        // Load saved text on page load
+        window.onload = function () {
+            const savedText = localStorage.getItem('editableText');
+            if (savedText) {
+                editableField.innerHTML = savedText;
+            }
+        };
+
+        // Save text to localStorage
+        function saveText() {
+            const text = editableField.innerHTML;
+            localStorage.setItem('editableText', text);
+            alert('Text saved successfully!');
+        }
+    </script>
+</body>
+</html>
